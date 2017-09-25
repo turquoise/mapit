@@ -36,6 +36,8 @@
               <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
                 <ng-template>
                   <strong>{{ m.name }}</strong>
+                  <br>
+                  <a class="delete" (click)="removeMarker(m)" >Delete</a>
                 </ng-template>
               </agm-snazzy-info-window>
 
