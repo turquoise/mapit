@@ -1,18 +1,21 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Mapit</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #cce6a3;">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Mapit</a>
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
 
-      </div>
-    </nav>
+  </div>
+</nav>
 
     <div class="container">
       <div class="row">
@@ -34,7 +37,7 @@
 
               <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
                 <ng-template>
-                  {{ m.name }}
+                  <strong>{{ m.name }}</strong>
                 </ng-template>
               </agm-snazzy-info-window>
 
@@ -43,4 +46,34 @@
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-title">Add New Marker</h4>
+
+              <form (submit)="addMarker()">
+                <label>Location Name</label>
+                <input type="text" [(ngModel)]="markerName" name="markerName">
+
+                <label>Latitude</label>
+                <input type="text" [(ngModel)]="markerLat" name="markerLat">
+
+                <label>Longitude</label>
+                <input type="text" [(ngModel)]="markerLng" name="markerLng">
+
+                <label>Draggable</label>
+                <select [(ngModel)]="markerDraggable" name="markerDraggable">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+                </select>
+                <input type="submit" value="Map it!">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div><!-- /.container -->

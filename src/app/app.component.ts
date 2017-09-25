@@ -20,6 +20,12 @@ export class AppComponent {
   // Start Position
   lat: number = 42.858217;
   lng: number = -70.929990;
+  // Values
+  markerName: string;
+  markerLat: string;
+  markerLng: string;
+  markerDraggable: string;
+
   // Markers
   markers: Marker[] = [
     {
@@ -67,6 +73,25 @@ export class AppComponent {
       lng: parseFloat(marker.lng),
       draggable: false
     }
+    let newLat = $event.coords.lat;
+    let newLng = $event.coords.lng;
+  }
+
+  addMarker() {
+    console.log('adding marker');
+    let isDraggable;
+    if (this.markerDraggable == 'yes') {
+      isDraggable = true;
+    } else {
+      isDraggable = false;
+    }
+    let newMarker = {
+      name: this.markerName,
+      lat: parseFloat(this.markerLat),
+      lng: parseFloat(this.markerLng),
+      draggable: isDraggable
+    }
+    this.markers.push(newMarker);
   }
 
 
