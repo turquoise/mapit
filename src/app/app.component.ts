@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { MarkerService } from './services/marker.service';
 // Marker Type
 interface Marker {
   name?: string,
@@ -12,7 +12,8 @@ interface Marker {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ MarkerService ]
 })
 export class AppComponent {
   // zoom level
@@ -27,28 +28,11 @@ export class AppComponent {
   markerDraggable: string;
 
   // Markers
-  markers: Marker[] = [
-    {
-      name: 'Company One',
-      lat: 42.825588,
-      lng: -71.018029,
-      draggable: true
-    },
-    {
-      name: 'Company Two',
-      lat: 42.861864,
-      lng: -70.889071,
-      draggable: true
-    },
-    {
-      name: 'Company Three',
-      lat: 42.828279,
-      lng: -70.930498,
-      draggable: false
-    }
-  ];
+  markers: Marker[];
 
-  constructor() {}
+  constructor(private _markerService: MarkerService) {
+    this.markers = this._markerService.getMarkers();
+  }
 
   clickedMarker(marker: Marker, index: number) {
     console.log('clicked marker: ', marker.name, ' at index ', index);
@@ -92,6 +76,7 @@ export class AppComponent {
       draggable: isDraggable
     }
     this.markers.push(newMarker);
+    this._markerService.addMarker(newMarker);
   }
 
 
